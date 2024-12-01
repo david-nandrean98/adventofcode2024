@@ -1,7 +1,13 @@
+from argparse import ArgumentParser
+
 if __name__ == "__main__":
 
+    parser = ArgumentParser(prog="Advent of Code 2024 - Day 1")
+    parser.add_argument("--input_file", required=True, type=str, help="The path to the input file")
+    args = parser.parse_args()
+
     # Reading the input file
-    data = list(map(lambda s: s.split('   '), open('input.txt').read().splitlines()))
+    data = list(map(lambda s: s.split('   '), open(args.input_file).read().splitlines()))
     
     #Creating the 2 lists
     list_1 = [int(d[0]) for d in data]
