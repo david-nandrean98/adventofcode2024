@@ -17,11 +17,12 @@ if __name__ == "__main__":
     # Reading the input file
     data = [list(map(int, line.split(' '))) for line in open(args.input_file).read().splitlines()]
 
-        #Part 1
+    #Part 1
     print("====== Part 1 ======")
     solution_1 = sum(1 for d in data if all(d1 != d2 and (d2 - d1) // abs(d2 - d1) == (d[1] - d[0]) // abs(d[1] - d[0]) and 1 <= abs(d2 - d1) <= 3 for d1, d2 in zip(d, d[1:])))
     print(f"   Solution: {solution_1}")
 
+    print('\n')
 
     #Part 2
     print("====== Part 2 ======")
