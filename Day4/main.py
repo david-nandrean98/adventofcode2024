@@ -32,8 +32,8 @@ if __name__ == "__main__":
     print("====== Part 2 ======")
     words = {"MAS", "SAM"}
     solution_2 = 0
-    for i in range(rows):
-        for j in range(cols):
-            if i - 1 >= 0 and i + 1 < rows and j - 1 >= 0 and j + 1 < cols and "".join(data[i - 1 + k][j - 1 + k] for k in range(3)) in words and "".join(data[i - 1 + k][j + 1 - k] for k in range(3)) in words:
+    for i in range(1, rows - 1):
+        for j in range(1, cols - 1):
+            if data[i][j] == 'A' and "".join(data[i - 1 + k][j - 1 + k] for k in range(3)) in words and "".join(data[i - 1 + k][j + 1 - k] for k in range(3)) in words:
                 solution_2 += 1
     print(f"   Solution: {solution_2}")
