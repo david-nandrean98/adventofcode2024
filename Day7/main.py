@@ -5,20 +5,22 @@ def equation_can_be_true(result, numbers, operator_idx, curr_result):
     if curr_result > result:
         return False
 
+    next_values = [curr_result + numbers[operator_idx + 1], curr_result * numbers[operator_idx + 1]]
     if operator_idx == len(numbers) - 2:
-        return result in [curr_result + numbers[operator_idx + 1], curr_result * numbers[operator_idx + 1]]
+        return result in next_values
 
-    return equation_can_be_true(result, numbers, operator_idx + 1, curr_result + numbers[operator_idx + 1]) or equation_can_be_true(result, numbers, operator_idx + 1, curr_result * numbers[operator_idx + 1])
+    return any(equation_can_be_true(result, numbers, operator_idx + 1, value) for value in next_values)
 
 
 def equation_can_be_true_part2(result, numbers, operator_idx, curr_result):
     if curr_result > result:
         return False
 
+    next_values = [curr_result + numbers[operator_idx + 1], curr_result * numbers[operator_idx + 1], int(f"{curr_result}{numbers[operator_idx + 1]}")]
     if operator_idx == len(numbers) - 2:
-        return result in [curr_result + numbers[operator_idx + 1], curr_result * numbers[operator_idx + 1], int(f"{curr_result}{numbers[operator_idx + 1]}")]
+        return result in next_values
 
-    return equation_can_be_true_part2(result, numbers, operator_idx + 1, curr_result + numbers[operator_idx + 1]) or equation_can_be_true_part2(result, numbers, operator_idx + 1, curr_result * numbers[operator_idx + 1]) or equation_can_be_true_part2(result, numbers, operator_idx + 1, int(f"{curr_result}{numbers[operator_idx + 1]}")) 
+    return any(equation_can_be_true_part2(result, numbers, operator_idx + 1, value) for value in next_values)
 
 
 if __name__ == "__main__":
